@@ -57,7 +57,7 @@
 
 			<div class="band" style="animation-delay:.84s"><h2 data-i18n="skills_h">Habilidades</h2></div>
 			<div class="block r" style="animation-delay:.93s">
-				<div class="skill-row"><strong data-i18n="sk1">Lenguajes</strong><p>Python, Go, TypeScript, JavaScript, Java, C, C++, Assembler x86</p></div>
+				<div class="skill-row"><strong data-i18n="sk1">Lenguajes</strong><p>Python, Go, TypeScript, JavaScript, Java, C, C++, Assembler x86, HTML, CSS</p></div>
 				<div class="skill-row"><strong data-i18n="sk2">Backend y móvil</strong><p data-i18n="sk2v">FastAPI, Node.js, NestJS, React Native (Expo), APIs REST, WebSockets</p></div>
 				<div class="skill-row"><strong data-i18n="sk3">Datos y mensajería</strong><p>PostgreSQL, MySQL, MongoDB, Redis, RabbitMQ</p></div>
 				<div class="skill-row"><strong data-i18n="sk4">Infraestructura y deploy</strong><p data-i18n="sk4v">Docker, Kubernetes, Linux, Apache, Nginx, Cloudflare, Render, Railway, Vercel, Supabase, GitHub Actions (CI), redes TCP/IP</p></div>
@@ -83,9 +83,9 @@
 
 		<div class="entry r" style="animation-delay:.72s">
 			<h3>ParkLink <a href="https://parklink.com.ar" target="_blank" rel="noopener">parklink.com.ar ↗</a></h3>
-			<p class="meta" data-i18n="pl_meta">Desarrollador principal · Emprendimiento propio, 2026 - Presente</p>
+			<p class="meta" data-i18n="pl_meta">Desarrollador principal, 2026 - Presente</p>
 			<ul>
-				<li data-i18n="pl1">Desarrollé una app completa para reservar y pagar estacionamiento en CABA: app móvil, 6 microservicios, gateway, panel de administración y landing. Autor del 70% del código del proyecto.</li>
+				<li data-i18n="pl1">Desarrollé una app para reservar y pagar estacionamiento en CABA: app móvil, 6 microservicios, gateway, panel de administración y landing. Autor del 70% del código del proyecto.</li>
 				<li data-i18n="pl2">Backend en Python, Go y TypeScript con PostgreSQL/PostGIS, eventos con RabbitMQ, pagos con Mercado Pago, push con Firebase y archivos en Cloudflare R2.</li>
 				<li data-i18n="pl3">Infraestructura y deploy: Docker Compose, Cloudflare (DNS y Tunnel), Render, CI con GitHub Actions y builds móviles con EAS.</li>
 				<li data-i18n="pl4">Seguridad: JWT en el gateway, rate limiting, headers OWASP y validación de secretos en producción.</li>
@@ -162,8 +162,8 @@ const EN = {
 	en: '%BEnglish</b> — Intermediate (B1, PET)',
 	role: 'Computer Engineer to be',
 	proj_h: 'Projects',
-	pl_meta: 'Lead developer · Own startup, 2026 - Present',
-	pl1: 'Built a full app to book and pay for parking in Buenos Aires: mobile app, 6 microservices, gateway, admin dashboard and landing page. Author of 70% of the project code.',
+	pl_meta: 'Lead developer, 2026 - Present',
+	pl1: 'Built an app to book and pay for parking in Buenos Aires: mobile app, 6 microservices, gateway, admin dashboard and landing page. Author of 70% of the project code.',
 	pl2: 'Backend in Python, Go and TypeScript with PostgreSQL/PostGIS, RabbitMQ events, Mercado Pago payments, Firebase push notifications and Cloudflare R2 storage.',
 	pl3: 'Infrastructure & deployment: Docker Compose, Cloudflare (DNS and Tunnel), Render, CI with GitHub Actions and mobile builds with EAS.',
 	pl4: 'Security: JWT at the gateway, rate limiting, OWASP headers and production secret validation.',
@@ -184,6 +184,11 @@ const EN = {
 };
 
 document.querySelector('.year').textContent = new Date().getFullYear();
+
+const actions = document.querySelector('.actions');
+new IntersectionObserver(([e]) => {
+	actions.style.translate = e.isIntersecting ? `0 -${Math.round(e.intersectionRect.height)}px` : '';
+}, { threshold: [...Array(21).keys()].map(i => i / 20) }).observe(document.querySelector('.legal'));
 
 const nodes = document.querySelectorAll('[data-i18n]');
 const ES = {};
