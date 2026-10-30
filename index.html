@@ -123,6 +123,11 @@
 
 </main>
 
+<footer class="legal">
+	<p>© <span class="year">2026</span> Thiago Fernando Baez · baez.com.ar · <span data-i18n="rights">Todos los derechos reservados.</span></p>
+	<p data-i18n="privacy">Este sitio no usa cookies ni herramientas de seguimiento. Solo guarda en tu navegador el idioma que elegís.</p>
+</footer>
+
 <div class="lang-btn" role="group" aria-label="Idioma / Language">
 	<button type="button" data-lang="es" aria-pressed="true">ES</button>
 	<button type="button" data-lang="en" aria-pressed="false">EN</button>
@@ -173,8 +178,12 @@ const EN = {
 	zorro: '%ZEl Zorro y las Ocas:</b> full board game written in x86 Assembly (NASM).',
 	robots: '%ZRobots:</b> strategy game in Java with a JavaFX interface and OOP.',
 	open: 'Open PDF',
-	print: 'Download PDF'
+	print: 'Download PDF',
+	rights: 'All rights reserved.',
+	privacy: 'This site does not use cookies or tracking tools. It only stores your chosen language in your browser.'
 };
+
+document.querySelector('.year').textContent = new Date().getFullYear();
 
 const nodes = document.querySelectorAll('[data-i18n]');
 const ES = {};
