@@ -225,10 +225,16 @@ p, li { font-size: 12.4px; line-height: 1.5; color: var(--ink-soft); }
 
 .r { animation: up .7s var(--ease) both; }
 
-.print {
+.actions {
 	position: fixed;
 	right: 22px;
 	bottom: 22px;
+	display: flex;
+	gap: 10px;
+	animation: up .6s var(--ease) 2s both;
+}
+
+.print {
 	font-family: var(--head);
 	font-weight: 700;
 	font-size: 13px;
@@ -242,10 +248,17 @@ p, li { font-size: 12.4px; line-height: 1.5; color: var(--ink-soft); }
 	cursor: pointer;
 	box-shadow: 0 8px 20px -6px #0f336880;
 	transition: transform .25s var(--ease);
-	animation: up .6s var(--ease) 2s both;
 }
 
 .print:hover { transform: translateY(-2px); color: var(--paper); text-decoration: none; }
+
+.print.ghost {
+	background: var(--paper);
+	color: var(--navy);
+	box-shadow: 0 8px 20px -8px #0000004d, inset 0 0 0 1.5px var(--navy);
+}
+
+.print.ghost:hover { color: var(--navy); }
 
 .lang-btn {
 	position: fixed;
@@ -310,7 +323,7 @@ p, li { font-size: 12.4px; line-height: 1.5; color: var(--ink-soft); }
 @media print {
 	@page { size: A4; margin: 0; }
 	body { background: none; padding: 0; }
-	.print, .lang-btn { display: none; }
+	.actions, .lang-btn { display: none; }
 	.sheet { width: 820px; min-height: 1160px; height: 1160px; box-shadow: none; zoom: .968; }
 	*, *::before, *::after { animation: none !important; }
 	.band::before { transform: none; }
@@ -424,7 +437,10 @@ p, li { font-size: 12.4px; line-height: 1.5; color: var(--ink-soft); }
 	<button type="button" data-lang="en" aria-pressed="false">EN</button>
 </div>
 
-<a class="print" href="Thiago-Baez-CV.pdf" download data-i18n="print">Descargar PDF</a>
+<div class="actions">
+	<a class="print ghost" href="Thiago-Baez-CV.pdf" target="_blank" rel="noopener" data-i18n="open">Abrir PDF</a>
+	<a class="print" href="Thiago-Baez-CV.pdf" download data-i18n="print">Descargar PDF</a>
+</div>
 
 
 <script>
@@ -466,6 +482,7 @@ const EN = {
 	other_h: 'Other academic projects',
 	zorro: '%ZEl Zorro y las Ocas:</b> full board game written in x86 Assembly (NASM).',
 	robots: '%ZRobots:</b> strategy game in Java with a JavaFX interface and OOP.',
+	open: 'Open PDF',
 	print: 'Download PDF'
 };
 
@@ -491,7 +508,7 @@ function setLang(lang, animate) {
 	} else {
 		apply();
 	}
-	document.querySelector('.print').href = lang === 'en' ? 'Thiago-Baez-CV-EN.pdf' : 'Thiago-Baez-CV.pdf';
+	document.querySelectorAll('.print').forEach(a => { a.href = lang === 'en' ? 'Thiago-Baez-CV-EN.pdf' : 'Thiago-Baez-CV.pdf'; });
 	localStorage.setItem('lang', lang);
 }
 
