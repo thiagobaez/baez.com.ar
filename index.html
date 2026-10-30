@@ -279,29 +279,6 @@ p, li { font-size: 12.4px; line-height: 1.5; color: var(--ink-soft); }
 [data-i18n] { transition: opacity .25s; }
 .switching [data-i18n] { opacity: 0; }
 
-.pdf-lang {
-	display: none;
-	position: absolute;
-	top: 16px;
-	right: 18px;
-	padding: 3px;
-	border: 1px solid var(--band);
-	border-radius: 999px;
-	z-index: 2;
-}
-
-.pdf-lang a {
-	font-family: var(--head);
-	font-weight: 700;
-	font-size: 10.5px;
-	letter-spacing: .1em;
-	color: var(--navy);
-	padding: 4px 9px 2px;
-	border-radius: 999px;
-}
-
-.pdf-lang a[aria-current="true"] { background: var(--navy); color: var(--paper); }
-
 @keyframes sheetIn { from { opacity: 0; transform: translateY(30px) scale(.985); } to { opacity: 1; transform: none; } }
 @keyframes drop { from { transform: scaleY(0); } to { transform: scaleY(1); } }
 @keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
@@ -334,7 +311,6 @@ p, li { font-size: 12.4px; line-height: 1.5; color: var(--ink-soft); }
 	@page { size: A4; margin: 0; }
 	body { background: none; padding: 0; }
 	.print, .lang-btn { display: none; }
-	.pdf-lang { display: flex; }
 	.sheet { width: 820px; min-height: 1160px; height: 1160px; box-shadow: none; zoom: .968; }
 	*, *::before, *::after { animation: none !important; }
 	.band::before { transform: none; }
@@ -347,10 +323,6 @@ p, li { font-size: 12.4px; line-height: 1.5; color: var(--ink-soft); }
 
 <main class="sheet">
 
-	<nav class="pdf-lang">
-		<a href="https://www.baez.com.ar/Thiago-Baez-CV.pdf" data-lang="es" aria-current="true">ES</a>
-		<a href="https://www.baez.com.ar/Thiago-Baez-CV-EN.pdf" data-lang="en" aria-current="false">EN</a>
-	</nav>
 
 	<div class="left">
 		<section class="side">
@@ -511,7 +483,6 @@ function setLang(lang, animate) {
 		document.documentElement.lang = lang;
 		document.title = lang === 'en' ? 'Thiago Fernando Baez — Résumé' : 'Thiago Fernando Baez — Currículum';
 		document.querySelectorAll('.lang-btn button').forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === lang));
-		document.querySelectorAll('.pdf-lang a').forEach(b => b.setAttribute('aria-current', b.dataset.lang === lang));
 		document.body.classList.remove('switching');
 	};
 	if (animate) {
