@@ -1,30 +1,537 @@
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
-	<title>
-		baez.com.ar
-	</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thiago Fernando Baez — Currículum</title>
+<meta name="description" content="Currículum de Thiago Fernando Baez, estudiante de Ingeniería en Informática en FIUBA.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@600;700;800&family=Fira+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+	--navy: #0f3368;
+	--ink: #1c1c1c;
+	--ink-soft: #3d3d3d;
+	--side: #eeeeee;
+	--band: #d7dde6;
+	--desk: #c9ccd1;
+	--paper: #ffffff;
+	--head: 'League Spartan', sans-serif;
+	--body: 'Fira Sans', sans-serif;
+	--ease: cubic-bezier(.2, .7, .1, 1);
+}
 
-	<style>
-	* { font-family: verdana; font-size: 10pt; COLOR: white; }
-	b { font-weight: bold; }
-	table { height: 50%; border: 1px solid white;}
-	td { text-align: center; padding: 25;}
-	body{
-	background-color: #1f1f1f;
-	}
-	</style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+	background: var(--desk);
+	background-image: radial-gradient(ellipse at 50% 0%, #dfe1e4 0%, var(--desk) 70%);
+	min-height: 100vh;
+	padding: 40px 16px;
+	font-family: var(--body);
+	color: var(--ink);
+	-webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+a:hover { color: var(--navy); text-decoration: underline; text-underline-offset: 2px; }
+
+.sheet {
+	width: 820px;
+	max-width: 100%;
+	min-height: 1160px;
+	margin: 0 auto;
+	background: var(--paper);
+	display: grid;
+	grid-template-columns: 44.6% 1fr;
+	position: relative;
+	overflow: hidden;
+	box-shadow: 0 1px 2px #0000001a, 0 18px 50px -12px #0000004d;
+	animation: sheetIn .9s var(--ease) both;
+}
+
+.sheet::after {
+	content: '';
+	position: absolute;
+	left: 0; right: 0; bottom: 0;
+	height: 16px;
+	background: var(--navy);
+	transform-origin: left;
+	animation: grow 1s var(--ease) 1.6s both;
+}
+
+.left { display: flex; flex-direction: column; }
+
+.side {
+	background: var(--side);
+	padding: 30px 32px 24px 48px;
+	transform-origin: top;
+	animation: drop .8s var(--ease) .15s both;
+}
+
+.photo {
+	width: 225px;
+	max-width: 100%;
+	aspect-ratio: 1;
+	margin: 0 auto 0 0;
+	border-radius: 50%;
+	background: var(--paper);
+	padding: 10px;
+	animation: pop .9s var(--ease) .45s both;
+}
+
+.photo img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	object-fit: cover;
+	object-position: 50% 30%;
+	transition: transform .6s var(--ease);
+}
+
+.photo { overflow: hidden; }
+.photo:hover img { transform: scale(1.04); }
+
+.right { padding: 58px 36px 36px 30px; }
+
+.name {
+	font-family: var(--head);
+	font-weight: 800;
+	color: var(--navy);
+	font-size: 54px;
+	line-height: .92;
+	text-transform: uppercase;
+	letter-spacing: .01em;
+}
+
+.name span { display: block; overflow: hidden; }
+.name span b { display: inline-block; font-weight: inherit; animation: rise .9s var(--ease) both; }
+.name span:nth-child(1) b { animation-delay: .5s; }
+.name span:nth-child(2) b { animation-delay: .6s; }
+.name span:nth-child(3) b { animation-delay: .7s; }
+
+.role {
+	font-family: var(--head);
+	font-weight: 700;
+	font-size: 16px;
+	letter-spacing: .12em;
+	text-transform: uppercase;
+	margin-top: 18px;
+	color: var(--ink);
+	animation: fade .8s var(--ease) .95s both;
+}
+
+h2 {
+	font-family: var(--head);
+	font-weight: 700;
+	color: var(--navy);
+	font-size: 18px;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+	margin-bottom: 10px;
+}
+
+.side h2 { margin-top: 20px; }
+
+.band {
+	position: relative;
+	padding: 10px 0 7px;
+	margin-bottom: 12px;
+}
+
+.band::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: var(--band);
+	transform: scaleX(0);
+	animation: grow .7s var(--ease) both;
+	animation-delay: inherit;
+	z-index: 0;
+}
+
+.band h2 { position: relative; margin: 0; z-index: 1; }
+
+.left .band { margin-left: 0; padding-left: 48px; margin-top: 20px; }
+.left .band::before { transform-origin: left; }
+.right .band { margin: 44px -36px 20px 0; padding-left: 14px; }
+.right .band::before { transform-origin: right; }
+
+.left .rest { padding: 0 32px 36px 0; }
+.left .rest .block { padding-left: 48px; }
+
+p, li { font-size: 12.4px; line-height: 1.5; color: var(--ink-soft); }
+
+.contact { list-style: none; }
+.contact li span { color: var(--ink); font-weight: 500; }
+
+.entry { margin-bottom: 22px; }
+
+.grad {
+	display: inline-block;
+	margin-top: 6px;
+	padding: 2px 10px;
+	border-radius: 999px;
+	background: var(--navy);
+	color: var(--paper);
+	font-size: 11.5px;
+	font-weight: 500;
+	letter-spacing: .02em;
+}
+.entry:last-child { margin-bottom: 0; }
+
+.entry h3 {
+	font-family: var(--body);
+	font-weight: 600;
+	font-size: 14.6px;
+	color: var(--ink);
+	letter-spacing: .01em;
+	display: flex;
+	align-items: baseline;
+	gap: 8px;
+}
+
+.entry h3 a { color: var(--navy); font-size: 11.5px; font-weight: 500; }
+
+.entry .meta {
+	font-weight: 500;
+	font-size: 12.6px;
+	color: var(--ink);
+	margin: 1px 0 4px;
+}
+
+.entry ul { list-style: none; }
+.entry li { padding-left: 12px; position: relative; }
+.entry li::before { content: '•'; position: absolute; left: 0; color: var(--ink); }
+
+.tech { font-size: 11.6px; margin-top: 3px; color: #5a5a5a; }
+.tech b { font-weight: 600; color: var(--ink); }
+
+.right .entry {
+	padding: 6px 10px;
+	margin-left: -10px;
+	border-left: 2px solid transparent;
+	transition: border-color .3s, background .3s;
+}
+
+.right .entry:hover { border-left-color: var(--navy); background: #f6f8fb; }
+
+.skill-row { margin-bottom: 6px; }
+.skill-row strong { display: block; font-weight: 600; font-size: 12.4px; color: var(--ink); }
+
+.lang { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px; }
+
+.r { animation: up .7s var(--ease) both; }
+
+.print {
+	position: fixed;
+	right: 22px;
+	bottom: 22px;
+	font-family: var(--head);
+	font-weight: 700;
+	font-size: 13px;
+	letter-spacing: .1em;
+	text-transform: uppercase;
+	color: var(--paper);
+	background: var(--navy);
+	border: none;
+	padding: 13px 18px 11px;
+	border-radius: 999px;
+	cursor: pointer;
+	box-shadow: 0 8px 20px -6px #0f336880;
+	transition: transform .25s var(--ease);
+	animation: up .6s var(--ease) 2s both;
+}
+
+.print:hover { transform: translateY(-2px); color: var(--paper); text-decoration: none; }
+
+.lang-btn {
+	position: fixed;
+	top: 16px;
+	right: 18px;
+	z-index: 10;
+	display: flex;
+	padding: 3px;
+	background: var(--paper);
+	border-radius: 999px;
+	box-shadow: 0 4px 14px -6px #0000004d;
+	animation: up .6s var(--ease) 2s both;
+}
+
+.lang-btn button {
+	font-family: var(--head);
+	font-weight: 700;
+	font-size: 11.5px;
+	letter-spacing: .1em;
+	border: none;
+	background: none;
+	color: var(--navy);
+	padding: 6px 10px 4px;
+	border-radius: 999px;
+	cursor: pointer;
+	transition: background .25s, color .25s;
+}
+
+.lang-btn button[aria-pressed="true"] { background: var(--navy); color: var(--paper); }
+
+[data-i18n] { transition: opacity .25s; }
+.switching [data-i18n] { opacity: 0; }
+
+.pdf-lang {
+	display: none;
+	position: absolute;
+	top: 16px;
+	right: 18px;
+	padding: 3px;
+	border: 1px solid var(--band);
+	border-radius: 999px;
+	z-index: 2;
+}
+
+.pdf-lang a {
+	font-family: var(--head);
+	font-weight: 700;
+	font-size: 10.5px;
+	letter-spacing: .1em;
+	color: var(--navy);
+	padding: 4px 9px 2px;
+	border-radius: 999px;
+}
+
+.pdf-lang a[aria-current="true"] { background: var(--navy); color: var(--paper); }
+
+@keyframes sheetIn { from { opacity: 0; transform: translateY(30px) scale(.985); } to { opacity: 1; transform: none; } }
+@keyframes drop { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes pop { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: scale(1); } }
+@keyframes rise { from { transform: translateY(110%); } to { transform: translateY(0); } }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes up { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+	*, *::before, *::after { animation: none !important; transition: none !important; }
+	.band::before { transform: none; }
+}
+
+@media screen and (max-width: 760px) {
+	body { padding: 0; }
+	.sheet { grid-template-columns: 1fr; min-height: 0; }
+	.side { padding: 32px 24px; }
+	.photo { margin: 0 auto; width: 220px; }
+	.right { order: -1; padding: 40px 24px 10px; }
+	.name { font-size: 52px; }
+	.right .band { margin-right: -24px; margin-top: 34px; }
+	.left .band { padding-left: 24px; }
+	.left .rest { padding-right: 24px; }
+	.left .rest .block { padding-left: 24px; }
+	.left { order: 0; }
+	.side { order: 0; }
+}
+
+@media print {
+	@page { size: A4; margin: 0; }
+	body { background: none; padding: 0; }
+	.print, .lang-btn { display: none; }
+	.pdf-lang { display: flex; }
+	.sheet { width: 820px; min-height: 1160px; height: 1160px; box-shadow: none; zoom: .968; }
+	*, *::before, *::after { animation: none !important; }
+	.band::before { transform: none; }
+	.right .entry:hover { background: none; border-left-color: transparent; }
+	* { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+</style>
 </head>
 <body>
-<center>
-<br><br><br><br>
-	<table>
-	<tr><td>Welcome to the home of <b>baez.com.ar</b></td></tr>
-	<tr><td><img src="obs.svg" width="80"></td></tr>
-	<tr><td style="font-size: 8pt">Date Created:  April 30, 2009</td></tr>
-	</table>
-<br><br>
 
-</center>
+<main class="sheet">
+
+	<nav class="pdf-lang">
+		<a href="https://www.baez.com.ar/Thiago-Baez-CV.pdf" data-lang="es" aria-current="true">ES</a>
+		<a href="https://www.baez.com.ar/Thiago-Baez-CV-EN.pdf" data-lang="en" aria-current="false">EN</a>
+	</nav>
+
+	<div class="left">
+		<section class="side">
+			<div class="photo"><img src="foto.jpg" alt="Thiago Fernando Baez" width="480" height="480"></div>
+
+			<h2 class="r" style="animation-delay:.9s" data-i18n="about_h">Acerca de mí</h2>
+			<p class="r" style="animation-delay:1s" data-i18n="about">Estudiante avanzado de Ingeniería en Informática en la UBA, próximo a recibirme. Desarrollé de punta a punta una app completa de microservicios, desde la arquitectura hasta el deploy en producción. Responsable, perseverante y con iniciativa para resolver problemas complejos con soluciones simples.</p>
+
+			<h2 class="r" style="animation-delay:1.1s" data-i18n="contact_h">Datos de contacto</h2>
+			<ul class="contact r" style="animation-delay:1.2s">
+				<li><span data-i18n="phone">Celular:</span> <a href="tel:+5493437414406">+54 9 343 741-4406</a></li>
+				<li><span data-i18n="email">Correo:</span> <a href="mailto:thiagofbaez@gmail.com">thiagofbaez@gmail.com</a></li>
+				<li><span>GitHub:</span> <a href="https://github.com/thiagobaez" target="_blank" rel="noopener">github.com/thiagobaez</a></li>
+				<li><span data-i18n="loc">Ubicación:</span> CABA, Argentina</li>
+			</ul>
+		</section>
+
+		<div class="rest">
+			<div class="band" style="animation-delay:1.2s"><h2 data-i18n="edu_h">Educación</h2></div>
+			<div class="block">
+				<div class="entry r" style="animation-delay:1.35s">
+					<h3>Universidad de Buenos Aires</h3>
+					<p class="meta" data-i18n="edu_meta">Ingeniería en Informática, 2022 - Presente</p>
+					<p data-i18n="edu_fac">Facultad de Ingeniería (FIUBA)</p>
+					<p class="grad" data-i18n="grad">Próximo a recibirme</p>
+				</div>
+			</div>
+
+			<div class="band" style="animation-delay:1.4s"><h2 data-i18n="skills_h">Habilidades</h2></div>
+			<div class="block r" style="animation-delay:1.55s">
+				<div class="skill-row"><strong data-i18n="sk1">Lenguajes</strong><p>Python, Go, TypeScript, JavaScript, Java, C, C++, Assembler x86</p></div>
+				<div class="skill-row"><strong data-i18n="sk2">Backend y móvil</strong><p data-i18n="sk2v">FastAPI, Node.js, NestJS, React Native (Expo), APIs REST, WebSockets</p></div>
+				<div class="skill-row"><strong data-i18n="sk3">Datos y mensajería</strong><p>PostgreSQL, MySQL, MongoDB, Redis, RabbitMQ</p></div>
+				<div class="skill-row"><strong data-i18n="sk4">Infraestructura y deploy</strong><p data-i18n="sk4v">Docker, Kubernetes, Linux, Apache, Nginx, Cloudflare, Render, Railway, Vercel, Supabase, GitHub Actions (CI), redes TCP/IP</p></div>
+			</div>
+
+			<div class="band" style="animation-delay:1.6s"><h2 data-i18n="lang_h">Idiomas</h2></div>
+			<div class="block r" style="animation-delay:1.7s">
+				<div class="lang"><p data-i18n="es"><b style="color:var(--ink);font-weight:600">Español</b> — Nativo</p></div>
+				<div class="lang"><p data-i18n="en"><b style="color:var(--ink);font-weight:600">Inglés</b> — Intermedio (B1, PET)</p></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="right">
+		<h1 class="name">
+			<span><b>Thiago</b></span>
+			<span><b>Fernando</b></span>
+			<span><b>Baez</b></span>
+		</h1>
+		<p class="role" data-i18n="role">Próximo Ingeniero en Informática</p>
+
+		<div class="band" style="animation-delay:1.05s"><h2 data-i18n="proj_h">Proyectos</h2></div>
+
+		<div class="entry r" style="animation-delay:1.2s">
+			<h3>ParkLink <a href="https://parklink.com.ar" target="_blank" rel="noopener">parklink.com.ar ↗</a></h3>
+			<p class="meta" data-i18n="pl_meta">Desarrollador principal · Emprendimiento propio, 2026 - Presente</p>
+			<ul>
+				<li data-i18n="pl1">Desarrollé una app completa para reservar y pagar estacionamiento en CABA: app móvil, 6 microservicios, gateway, panel de administración y landing. Autor del 70% del código del proyecto.</li>
+				<li data-i18n="pl2">Backend en Python, Go y TypeScript con PostgreSQL/PostGIS, eventos con RabbitMQ, pagos con Mercado Pago, push con Firebase y archivos en Cloudflare R2.</li>
+				<li data-i18n="pl3">Infraestructura y deploy: Docker Compose, Cloudflare (DNS y Tunnel), Render, CI con GitHub Actions y builds móviles con EAS.</li>
+				<li data-i18n="pl4">Seguridad: JWT en el gateway, rate limiting, headers OWASP y validación de secretos en producción.</li>
+			</ul>
+			<p class="tech" data-i18n="pl_tech"><b>Tecnologías:</b> React Native (Expo), FastAPI, NestJS, Node.js, Go, PostgreSQL, RabbitMQ, Docker.</p>
+		</div>
+
+		<div class="entry r" style="animation-delay:1.35s">
+			<h3>Discordia</h3>
+			<p class="meta" data-i18n="dc_meta">FIUBA · Ingeniería del Software II, 2026</p>
+			<ul>
+				<li data-i18n="dc1">Chat en tiempo real con servidores, canales, roles y permisos, mensajería y canales de voz.</li>
+				<li data-i18n="dc2">Microservicios en Python y Go tras un gateway KrakenD, eventos con Redis Streams, voz con LiveKit (WebRTC) y CI con GitHub Actions.</li>
+			</ul>
+			<p class="tech" data-i18n="dc_tech"><b>Tecnologías:</b> FastAPI, Go, PostgreSQL, Redis, TypeScript, Render, Vercel.</p>
+		</div>
+
+		<div class="entry r" style="animation-delay:1.5s">
+			<h3>Counter-Strike 2D</h3>
+			<p class="meta">FIUBA, 2025</p>
+			<ul>
+				<li data-i18n="cs1">Juego multijugador cliente-servidor en C++20. Desarrollé el cliente: interfaz gráfica, audio, eventos, mapas y animaciones.</li>
+			</ul>
+			<p class="tech" data-i18n="cs_tech"><b>Tecnologías:</b> C++20, SDL2pp, Qt6, YAML, GTest, Valgrind.</p>
+		</div>
+
+		<div class="entry r" style="animation-delay:1.65s">
+			<h3 data-i18n="other_h">Otros proyectos académicos</h3>
+			<ul>
+				<li data-i18n="zorro"><b style="font-weight:600;color:var(--ink)">El Zorro y las Ocas:</b> juego de tablero completo en Assembler x86 (NASM).</li>
+				<li data-i18n="robots"><b style="font-weight:600;color:var(--ink)">Robots:</b> juego de estrategia en Java con interfaz JavaFX y POO.</li>
+			</ul>
+		</div>
+	</div>
+
+</main>
+
+<div class="lang-btn" role="group" aria-label="Idioma / Language">
+	<button type="button" data-lang="es" aria-pressed="true">ES</button>
+	<button type="button" data-lang="en" aria-pressed="false">EN</button>
+</div>
+
+<a class="print" href="Thiago-Baez-CV.pdf" download data-i18n="print">Descargar PDF</a>
+
+
+<script>
+const EN = {
+	about_h: 'About me',
+	about: 'Advanced Computer Engineering student at the University of Buenos Aires, about to graduate. I built a full microservices app end to end, from the architecture to the production deployment. Responsible, persistent and proactive, I enjoy solving complex problems with simple solutions.',
+	contact_h: 'Contact',
+	phone: 'Phone:',
+	email: 'Email:',
+	loc: 'Location:',
+	edu_h: 'Education',
+	edu_meta: 'Computer Engineering, 2022 - Present',
+	edu_fac: 'School of Engineering (FIUBA)',
+	grad: 'About to graduate',
+	skills_h: 'Skills',
+	sk1: 'Languages',
+	sk2: 'Backend & mobile',
+	sk2v: 'FastAPI, Node.js, NestJS, React Native (Expo), REST APIs, WebSockets',
+	sk3: 'Data & messaging',
+	sk4: 'Infrastructure & deployment',
+	sk4v: 'Docker, Kubernetes, Linux, Apache, Nginx, Cloudflare, Render, Railway, Vercel, Supabase, GitHub Actions (CI), TCP/IP networking',
+	lang_h: 'Languages',
+	es: '%BSpanish</b> — Native',
+	en: '%BEnglish</b> — Intermediate (B1, PET)',
+	role: 'Computer Engineer to be',
+	proj_h: 'Projects',
+	pl_meta: 'Lead developer · Own startup, 2026 - Present',
+	pl1: 'Built a full app to book and pay for parking in Buenos Aires: mobile app, 6 microservices, gateway, admin dashboard and landing page. Author of 70% of the project code.',
+	pl2: 'Backend in Python, Go and TypeScript with PostgreSQL/PostGIS, RabbitMQ events, Mercado Pago payments, Firebase push notifications and Cloudflare R2 storage.',
+	pl3: 'Infrastructure & deployment: Docker Compose, Cloudflare (DNS and Tunnel), Render, CI with GitHub Actions and mobile builds with EAS.',
+	pl4: 'Security: JWT at the gateway, rate limiting, OWASP headers and production secret validation.',
+	pl_tech: '<b>Tech:</b> React Native (Expo), FastAPI, NestJS, Node.js, Go, PostgreSQL, RabbitMQ, Docker.',
+	dc_meta: 'FIUBA · Software Engineering II, 2026',
+	dc1: 'Real-time chat with servers, channels, roles and permissions, messaging and voice channels.',
+	dc2: 'Python and Go microservices behind a KrakenD gateway, Redis Streams events, LiveKit (WebRTC) voice and CI with GitHub Actions.',
+	dc_tech: '<b>Tech:</b> FastAPI, Go, PostgreSQL, Redis, TypeScript, Render, Vercel.',
+	cs1: 'Client-server multiplayer game in C++20. I built the client: graphical interface, audio, input events, maps and animations.',
+	cs_tech: '<b>Tech:</b> C++20, SDL2pp, Qt6, YAML, GTest, Valgrind.',
+	other_h: 'Other academic projects',
+	zorro: '%ZEl Zorro y las Ocas:</b> full board game written in x86 Assembly (NASM).',
+	robots: '%ZRobots:</b> strategy game in Java with a JavaFX interface and OOP.',
+	print: 'Download PDF'
+};
+
+const nodes = document.querySelectorAll('[data-i18n]');
+const ES = {};
+nodes.forEach(n => { ES[n.dataset.i18n] = n.innerHTML; });
+
+function setLang(lang, animate) {
+	const dict = lang === 'en' ? EN : ES;
+	const apply = () => {
+		nodes.forEach(n => {
+			const v = dict[n.dataset.i18n];
+			if (v) n.innerHTML = v.replace('%B', B_TAG).replace('%Z', Z_TAG);
+		});
+		document.documentElement.lang = lang;
+		document.title = lang === 'en' ? 'Thiago Fernando Baez — Résumé' : 'Thiago Fernando Baez — Currículum';
+		document.querySelectorAll('.lang-btn button').forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === lang));
+		document.querySelectorAll('.pdf-lang a').forEach(b => b.setAttribute('aria-current', b.dataset.lang === lang));
+		document.body.classList.remove('switching');
+	};
+	if (animate) {
+		document.body.classList.add('switching');
+		setTimeout(apply, 250);
+	} else {
+		apply();
+	}
+	document.querySelector('.print').href = lang === 'en' ? 'Thiago-Baez-CV-EN.pdf' : 'Thiago-Baez-CV.pdf';
+	localStorage.setItem('lang', lang);
+}
+
+const B_TAG = '<b style="color:var(--ink);font-weight:600">';
+const Z_TAG = '<b style="font-weight:600;color:var(--ink)">';
+
+document.querySelectorAll('.lang-btn button').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang, true)));
+
+const initial = new URLSearchParams(location.search).get('lang') || localStorage.getItem('lang');
+if (initial === 'en') setLang('en', false);
+</script>
+
 </body>
-
 </html>
